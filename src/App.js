@@ -5,6 +5,7 @@ import { Navbar } from "./component/Navbar";
 import { Card } from "./component/Card";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Malumot } from "./component/Malumot";
+import { Add } from "./component/Add";
 
 const App = () => {
   const [data, setdata] = useState([]);
@@ -44,6 +45,7 @@ const App = () => {
             }
           />
           <Route path="/books/:id" element={<Malumot fil={fil} />} />
+          <Route path="/add_post" element={<Add/>}/>
         </Routes>
       </Router>
     </div>
