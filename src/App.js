@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Navbar } from "./component/Navbar";
+import { Card } from "./component/Card";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Malumot } from "./component/Malumot";
 
-function App() {
+const App = () => {
+  const [data, setdata] = useState([]);
+  const [fil, setfil] = useState([]);
+  const getData = async () => {
+    const data = await fetch("http://localhost:3000/api/v1/data")
+      .then((res) => res.json())
+      .then((data) => setdata(data.data));
+  };
+  const handleDelete = async (id) => {
+    await fetch(`http://localhost:3000/api/v1/data/${id}`, {
+      method: "DELETE",
+    }).then((a) => setdata(data.filter((val) => val.id !== id)));
+  };
+
+  const getSort = async (id) => {
+    console.log(id);
+    await fetch(`http://localhost:3000/api/v1/data/${id}`)
+      .then((res) => res.json())
+      .then((da) => setfil(da.data));
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
+  console.log("filllllllllll", fil);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Card handleDelete={handleDelete} getSort={getSort} data={data} />
+            }
+          />
+          <Route path="/books/:id" element={<Malumot fil={fil} />} />
+        </Routes>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
