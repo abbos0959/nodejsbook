@@ -15,6 +15,25 @@
     color: white;
     font-size: 30px;
 }
+.Menu h1 a{
+    text-decoration: none;
+    color: white;
+}
+.in{
+    padding: 10px;
+    border-radius: 10px 0px 10px 0px;
+
+    outline: none;
+    border: none;
+    transition: all 0.3s ease-in;
+    border-bottom: 6px solid rgb(126, 224, 15);
+    opacity: 0.9;
+}
+.in:hover{
+    border-radius: 0px 10px 0px 10px;
+    border-bottom: 6px solid rgb(224, 168, 15);
+
+}
 .Home{
     display: flex;
     margin-right: 20px;

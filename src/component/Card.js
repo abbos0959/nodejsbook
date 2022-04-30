@@ -1,11 +1,11 @@
 import React from "react";
 import "./card.css";
 import { Link } from "react-router-dom";
-export const Card = ({ data, handleDelete, getSort }) => {
+export const Card = ({ filte, handleDelete, getSort }) => {
   return (
     <div className="ca">
       <ul className="card-wrapper">
-        {data.map((val) => {
+        {filte.map((val) => {
           return (
             <li key={val.id} className="card">
               <img src={val.imageLink} alt="" />
